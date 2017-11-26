@@ -1,14 +1,11 @@
 var webpack = require('webpack');
-var path = require('path');
-
-var BUILD_DIR = path.resolve(__dirname, '/public/');
-var APP_DIR = path.resolve(__dirname, 'src');
 
 var config = {
-  entry: APP_DIR + '/index.js',
+  devtool: "inline-source-map",
+  entry: './src/index.js',
   output: {
-    path: BUILD_DIR,
-    publicPath: BUILD_DIR,
+    path: __dirname,
+    publicPath: '/',
     filename: 'bundle.js'
   },
 
@@ -21,6 +18,9 @@ var config = {
         query: {
             presets: ['es2015', 'react']
         }
+      },
+      { test: /(\.css$)/,
+        loaders: ['style-loader', 'css-loader']
       }
     ]
   }
