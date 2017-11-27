@@ -33,7 +33,7 @@ class Header extends React.Component {
                                         <input className="input is-focused" type="text" placeholder="rich@gmail.com"/>
                                     </p>
                                     <p className="control">
-                                        <input className="input is-focused" type="text" placeholder="Password"/>
+                                        <input className="input" type="text" placeholder="Password"/>
                                     </p>
                                     <p className="control">
                                         <input className="button" type="submit" value="Login"/>

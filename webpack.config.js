@@ -9,20 +9,28 @@ var config = {
     filename: 'bundle.js'
   },
 
-  module : {
-    loaders : [
+  module: {
+    loaders: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-            presets: ['es2015', 'react']
+          presets: ['es2015', 'react']
         }
-      },
-      { test: /(\.css$)/,
+      }, {
+        test: /(\.css$)/,
         loaders: ['style-loader', 'css-loader']
       }
     ]
+  },
+  
+  stats: {
+    errorDetails: true
+  },
+
+  devServer: {
+    historyApiFallback: true
   }
 };
 
