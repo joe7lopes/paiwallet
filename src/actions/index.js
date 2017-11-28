@@ -1,6 +1,7 @@
 
 import {
-    FETCH_MARKET_SATUS
+    FETCH_MARKET_SATUS,
+    FETCH_STOCK_VARIATION
 } from './types';
 
 export function fetchMarketStatus(){
@@ -12,6 +13,15 @@ export function fetchMarketStatus(){
         payload: marketStatus
     }
 };
+
+export function fetchStockVariation(){
+    let stocksVariation = {psi20: -3, topStocks: 4}
+
+    return {
+        type: FETCH_STOCK_VARIATION,
+        payload: stocksVariation
+    }
+}
 
 function getMarketStatus(){
     let today = new Date();

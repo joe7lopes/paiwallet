@@ -4,8 +4,7 @@ import authReducer from './auth_reducer';
 import marketReducer from './market_reducer';
 
 const rootReducer = combineReducers({
-    from,
-    marketStatus: marketReducer
+    marketInfo: marketReducer
 });
 
 export default rootReducer;
