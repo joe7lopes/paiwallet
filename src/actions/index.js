@@ -1,10 +1,9 @@
-
 import {
     FETCH_MARKET_SATUS,
     FETCH_STOCK_VARIATION
 } from './types';
 
-export function fetchMarketStatus(){
+export function fetchMarketStatus() {
     //need to find a free API to get this data
     let marketStatus = getMarketStatus();
 
@@ -14,27 +13,31 @@ export function fetchMarketStatus(){
     }
 };
 
-export function fetchStockVariation(){
-    let stocksVariation = {psi20: -3, topStocks: 4}
-
+export function fetchStockVariation() {
+    let stocksVariation = {
+        psi20: "-1",
+        topStocks: "3"
+    }
     return {
         type: FETCH_STOCK_VARIATION,
         payload: stocksVariation
     }
 }
 
-function getMarketStatus(){
+function getMarketStatus() {
     let today = new Date();
-    
-   let openingTime = new Date();
-   openingTime.setHours(8);
-   openingTime.setMinutes(0);
-   
-   let closingTime = new Date();
-   closingTime.setHours(16);
-   closingTime.setMinutes(30);
 
-   let isMarketOpen = today >= openingTime && today < closingTime;
-   let marketStatus = isMarketOpen ? 'OPEN' : 'CLOSED';
-   return marketStatus;
+    let openingTime = new Date();
+    openingTime.setHours(8);
+    openingTime.setMinutes(0);
+
+    let closingTime = new Date();
+    closingTime.setHours(16);
+    closingTime.setMinutes(30);
+
+    let isMarketOpen = today >= openingTime && today < closingTime;
+    let marketStatus = isMarketOpen ?
+        'OPEN' :
+        'CLOSED';
+    return marketStatus;
 }
