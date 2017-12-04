@@ -27,11 +27,18 @@ var config = {
         use: [{
             loader: 'url-loader',
             options: { 
-                limit: 8000, // Convert images < 8kb to base64 strings
+                //limit: 8000, // Convert images < 8kb to base64 strings
                 name: 'images/[hash]-[name].[ext]'
             } 
         }]
-    }
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'file-loader',
+        options:{
+          name: 'fonts/[name].[ext]'
+        }
+      }
     ]
   },
   

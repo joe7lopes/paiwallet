@@ -5,46 +5,46 @@ class Header extends React.Component {
 
     render() {
         return (
-            <section className="section">
-                <nav
-                    className="navbar is-primary is-fixed-top"
-                    role="navigation"
-                    aria-label="main navigation">
-                    <div className="navbar-brand">
-                        <a className="navbar-item" href="https://bulma.io">
-                            <img
-                                src="https://bulma.io/images/bulma-logo.png"
-                                alt="Bulma: a modern CSS framework based on Flexbox"
-                                width="112"
-                                height="28"/>
-                        </a>
-                    </div>
-                    <div className="navbar-menu">
-                        <div className="navbar-start">
-                            <Link className="navbar-item"  to="/">Home</Link>
-                            <Link className="navbar-item"  to="/topstocks">Top Stocks</Link>
-                            <Link className="navbar-item"  to="/subscription">Subscription</Link>
-                            <Link className="navbar-item"  to="/disclaimer">Disclaimer</Link>
-                        </div>
-                        <div className="navbar-end">
-                            <div className="navbar-item">
-                                <div className="field is-grouped">
-                                    <p className="control">
-                                        <input className="input is-focused" type="text" placeholder="rich@gmail.com"/>
-                                    </p>
-                                    <p className="control">
-                                        <input className="input" type="text" placeholder="Password"/>
-                                    </p>
-                                    <p className="control">
-                                        <input className="button" type="submit" value="Login"/>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
+                <div className="nav-wrapper">
+                    <nav className="white" role="navigation">
+                        <div className="nav-wrapper">
+                            <a className="brand-logo" href="#">Logo</a>
+                            <ul id="nav-mobile" className="right hide-on-med-and-down">
+                                <li>
+                                    <Link to="/">Home</Link>
+                                </li>
+                                <li>
+                                    <Link to="/topstocks">Top Stocks</Link>
+                                </li>
+                                <li>
+                                    <Link to="/subscription">Subscription</Link>
+                                </li>
+                                <li>
+                                    <Link to="/disclaimer">Disclaimer</Link>
+                                </li>
+                                {/* <li>
+                                    <input id="userName" type="text" placeholder="rich@gmail.com"/>
+                                </li>
+                                <li>
+                                    <input id="userName" type="password" placeholder="password"/>
+                                </li>
+                                <li>
+                                    <a className="waves-effect waves-light btn">Login</a>
+                                </li> */}
+                            </ul>
+                            <ul id="nav-mobile" className="side-nav">
+                                <li>
+                                    <a href="#">Navbar Link</a>
+                                </li>
+                            </ul>
+                            <a href="#" data-activates="nav-mobile" className="button-collapse">
+                                <i className="material-icons">menu</i>
+                            </a>
 
-            </section>
+                        </div>
+
+                    </nav>
+                </div>
         );
     }
 }

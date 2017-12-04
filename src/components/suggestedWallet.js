@@ -16,6 +16,8 @@ class SuggestedWallet extends React.Component {
                         <div className="content">
                             <h4 className="subtitle is-4">Your Bugget</h4>
                             <progress className="progress is-success" value="60" max="100">60%</progress>
+                            
+                            <input type="range" min="0" max="100"/>
                         </div>
                         <div className="content">
                             <h4 className="subtitle is-4">Risk Tolerance</h4>
