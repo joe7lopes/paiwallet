@@ -7,14 +7,27 @@ import Footer from './footer';
 
 class Home extends React.Component {
 
+
+    handleOnWalletPickerClick(){
+        this.refs.walletPicker.scrollIntoView({behavior: "smooth"});
+    }
+
+    handleOnTopStocksClick(){
+        this.refs.topstocks.scrollIntoView({behavior: "smooth"});
+    }
+
     render() {
         return (
             <div>
-                <HomeTopSection/>
-                <TopStocksPerformance/>
+                <HomeTopSection {...this.props} onClick={this.handleOnWalletPickerClick.bind(this)}/>
+                <section ref="topstocks">
+                    <TopStocksPerformance/>
+                </section>
                 <ServicesDescription/>
-                <WalletPicker/>
-                <Footer/>
+                <section ref="walletPicker" className="section">
+                    <WalletPicker/>
+                </section>
+                <Footer {...this.props} onTopStocksClick={this.handleOnTopStocksClick.bind(this)}/>
             </div>
         );
     }

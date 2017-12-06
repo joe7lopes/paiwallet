@@ -5,8 +5,6 @@ class WalletPicker extends React.Component {
 
     render() {
         return (
-            <section className="section">
-
                 <div className="row">
 
                     <div className="col s12 m6">
@@ -39,8 +37,6 @@ class WalletPicker extends React.Component {
                     </div>
                     
                 </div>
-
-            </section>
         );
     }
 }

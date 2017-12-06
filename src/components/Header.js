@@ -5,7 +5,7 @@ class Header extends React.Component {
 
     render() {
         return (
-                <div className="nav-wrapper">
+                <div className="nav-wrapper white-text">
                     <nav className="teal" role="navigation">
                         <div className="nav-wrapper">
                             <a className="brand-logo" href="#">Logo</a>

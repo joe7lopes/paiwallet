@@ -8,7 +8,7 @@ class Wallet extends React.Component {
                 <div className="card-image">
                     <img src={require('../images/wallstSmall.png')}/>
                     <span className="card-title">Conservative</span>
-                    <a className="btn-floating halfway-fab waves-effect waves-light indigo pulse">
+                    <a className="btn-floating halfway-fab waves-effect waves-light red">
                         <i className="material-icons">add</i>
                     </a>
                 </div>
