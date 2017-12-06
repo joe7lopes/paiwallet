@@ -6,7 +6,7 @@ const ServicesDescription = () => (
               <div className="icon-block">
                 <h2 className="center white-text"><i className="material-icons">devices</i></h2>
                 <h5 className="center white-text">Instant Feeds</h5>
-                <p className="light white-text">Get on-time data fee, so that, you can trade safely.</p>
+                <p className="light white-text center">Get on-time data fee, so that, you can trade safely.</p>
               </div>
             </div>
     
@@ -14,7 +14,7 @@ const ServicesDescription = () => (
               <div className="icon-block">
                 <h2 className="center"><i className="material-icons">group</i></h2>
                 <h5 className="center">User Personalization Focused</h5>
-                <p className="light">We guide you through your investment plan, so that, you can comfortably maximaze your returns</p>
+                <p className="light center">We guide you through your investment plan, so that, you can comfortably maximaze your returns</p>
               </div>
             </div>
     
@@ -22,7 +22,7 @@ const ServicesDescription = () => (
               <div className="icon-block">
                 <h2 className="center"><i className="material-icons">settings</i></h2>
                 <h5 className="center">Easy to work with</h5>
-                <p className="light">We have provided detailed Analisys of our choices for you.</p>
+                <p className="light center">We have provided detailed Analisys of our choices for you.</p>
               </div>
             </div>
           </div>

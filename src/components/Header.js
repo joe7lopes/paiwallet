@@ -6,7 +6,7 @@ class Header extends React.Component {
     render() {
         return (
                 <div className="nav-wrapper">
-                    <nav className="white" role="navigation">
+                    <nav className="teal" role="navigation">
                         <div className="nav-wrapper">
                             <a className="brand-logo" href="#">Logo</a>
                             <ul id="nav-mobile" className="right hide-on-med-and-down">

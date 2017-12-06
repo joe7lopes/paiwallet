@@ -3,6 +3,7 @@ import HomeTopSection from './homeTopSection';
 import ServicesDescription from './ServicesDescription';
 import TopStocksPerformance from '../topStocksPerformance';
 import WalletPicker from './walletPicker';
+import Footer from './footer';
 
 class Home extends React.Component {
 
@@ -13,6 +14,7 @@ class Home extends React.Component {
                 <TopStocksPerformance/>
                 <ServicesDescription/>
                 <WalletPicker/>
+                <Footer/>
             </div>
         );
     }
