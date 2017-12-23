@@ -1,6 +1,6 @@
 import React from 'react';
 const ServicesDescription = () => (
-    <div className="section teal">
+    <div className="section light-green darken-1">
           <div className="row">
             <div className="col s12 m4">
               <div className="icon-block">

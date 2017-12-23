@@ -20,12 +20,10 @@ class Home extends React.Component {
         return (
             <div>
                 <HomeTopSection {...this.props} onClick={this.handleOnWalletPickerClick.bind(this)}/>
-                <section ref="topstocks">
+                <section className= "container" ref="topstocks">
+                <div >
                     <TopStocksPerformance/>
-                </section>
-                <ServicesDescription/>
-                <section ref="walletPicker" className="section">
-                    <WalletPicker/>
+                </div>
                 </section>
                 <Footer {...this.props} onTopStocksClick={this.handleOnTopStocksClick.bind(this)}/>
             </div>

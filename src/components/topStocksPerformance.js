@@ -11,7 +11,7 @@ class TopStocksPerformance extends React.Component {
 
     renderMarketDateAndStatus() {
         const month = this.getMonth()
-        const day = new Date().getDay()
+        const day = new Date().getDate()
         const marketStatus = this.props.marketStatus;
         const marketDateAndStatus = `${month} ${day} - ${marketStatus}`;
         return <h2 className="subtitle">{marketDateAndStatus}</h2>
@@ -67,7 +67,6 @@ class TopStocksPerformance extends React.Component {
     render() {
         return (
             <section className="section">
-                <div className="container">
                     {this.renderMarketDateAndStatus()}
                     <div className="tile is-ancestor">
                         <div className="tile is-4 is-vertical is-parent">
@@ -80,7 +79,6 @@ class TopStocksPerformance extends React.Component {
                             </div>
                         </div>
                     </div>
-                </div>
             </section>
         )
     }
