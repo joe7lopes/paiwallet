@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux';
-import {reducer as from} from 'redux-form';
-import authReducer from './auth_reducer';
+import {reducer as formReducer} from 'redux-form';
 import marketReducer from './market_reducer';
 
 const rootReducer = combineReducers({
-    marketInfo: marketReducer
+    marketInfo: marketReducer,
+    form: formReducer
 });
 
 export default rootReducer;

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
     FETCH_MARKET_SATUS,
     FETCH_STOCK_VARIATION
@@ -21,6 +22,13 @@ export function fetchStockVariation() {
     return {
         type: FETCH_STOCK_VARIATION,
         payload: stocksVariation
+    }
+}
+
+const AUTH_URL = 'http://localhost:3000';
+export function signinUser({user, password}){
+    return function(dispatch){
+        axios.post(`${AUTH_URL}/signin`,{ email, password });
     }
 }
 

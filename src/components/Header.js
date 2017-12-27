@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import Signin from './auth/signin';
 
 class Header extends React.Component {
 
@@ -22,25 +23,10 @@ class Header extends React.Component {
                                 <li>
                                     <Link to="/disclaimer">Disclaimer</Link>
                                 </li>
-                                {/* <li>
-                                    <input id="userName" type="text" placeholder="rich@gmail.com"/>
-                                </li>
-                                <li>
-                                    <input id="userName" type="password" placeholder="password"/>
-                                </li>
-                                <li>
-                                    <a className="waves-effect waves-light btn">Login</a>
-                                </li> */}
+                                 <li>
+                                   <Signin/>
+                                </li> 
                             </ul>
-                            <ul id="nav-mobile" className="side-nav">
-                                <li>
-                                    <a href="#">Navbar Link</a>
-                                </li>
-                            </ul>
-                            <a href="#" data-activates="nav-mobile" className="button-collapse">
-                                <i className="material-icons">menu</i>
-                            </a>
-
                         </div>
 
                     </nav>
