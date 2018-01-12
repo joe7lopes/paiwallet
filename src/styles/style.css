@@ -1,4 +1,31 @@
+/*HEADER*/
 nav ul a,
-nav .brand-logo {
-  color: #444;
+nav {
+  color: white;
+  background-color:#26a69a;
+}
+
+nav button{
+    background-color: #ef9a9a !important;
+}
+
+/*inputs*/
+.input-bordered{
+    border: 1px solid #00897b !important;
+    background-color: whitesmoke !important;
+    color: black;
+    height: 2em !important;
+    text-indent: 5px;
+}
+
+.input-bordered:hover,
+.input-bordered:focus {
+    border: 1px solid #80cbc4 !important;
+}
+
+/*Gradient */
+.home-container{
+    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+    color: white;
+    opacity: 0.95;
 }

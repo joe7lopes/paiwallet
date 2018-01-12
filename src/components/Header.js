@@ -6,9 +6,9 @@ class Header extends React.Component {
 
     render() {
         return (
-                <div className="nav-wrapper container">
-                    <nav className="white black-text text-darken-2" role="navigation">
-                        <div className="nav-wrapper">
+                <div className="nav-wrapper">
+                    <nav role="navigation">
+                        <div className="nav-wrapper container">
                             <a className="brand-logo" href="#">Logo</a>
                             <ul id="nav-mobile" className="right hide-on-med-and-down">
                                 <li>
@@ -18,13 +18,22 @@ class Header extends React.Component {
                                     <Link to="/topstocks">Top Stocks</Link>
                                 </li>
                                 <li>
-                                    <Link to="/subscription">Subscription</Link>
-                                </li>
-                                <li>
                                     <Link to="/disclaimer">Disclaimer</Link>
                                 </li>
                                  <li>
-                                   <Signin/>
+                                    <form>
+                                        <div className="row">
+                                            <div className="input-field col" style={{paddingRight: "0px"}}>
+                                                <input className="input-bordered" type="email" placeholder="rich@gmail.com"/>
+                                            </div>
+                                            <div className="input-field col">
+                                                <input className="input-bordered" type="password" placeholder="Password"/>
+                                            </div>
+                                            <div className="input-field col">
+                                                <button className="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </li> 
                             </ul>
                         </div>
