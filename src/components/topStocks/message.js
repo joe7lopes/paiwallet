@@ -7,8 +7,8 @@ class Message extends React.Component {
         const { title, text, date } = this.props;
         
         return(
-                <div className="card blue darken-1">
-                    <div className="card-content white-text">
+                <div className="card pai-container white black-text">
+                    <div className="card-content">
                         <span className="card-title">{title}</span>
                         <p>{text}</p>
                     </div>
