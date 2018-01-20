@@ -10,9 +10,10 @@ import 'materialize-css/dist/js/materialize.js';
 import 'materialize-css/dist/css/materialize.css';
 import './styles/style.css';
 
-import Header from './components/Header';
+import Header from './components/header';
 import Home from './components/home';
-import TopStocks from './components/TopStocks';
+import Subscription from './components/subscription/subscription';
+import TopStocks from './components/topStocks/topStocks';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -23,6 +24,7 @@ ReactDOM.render(
     <div>
       <Header/>
       <Route exact path="/" component={Home}/>
+      <Route path="/subscription" component={Subscription}/>
       <Route path="/topstocks" component={TopStocks}/>
     </div>
   </Router>

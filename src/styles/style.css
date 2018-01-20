@@ -1,31 +1,49 @@
+body{
+    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+    color: white;
+    opacity: 0.95;
+    height:100vh;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 /*HEADER*/
 nav ul a,
 nav {
   color: white;
   background-color:#26a69a;
 }
-
-nav button{
-    background-color: #ef9a9a !important;
+/*  transform button text */
+.btn, a{
+    text-transform: none !important;
 }
 
-/*inputs*/
-.input-bordered{
-    border: 1px solid #00897b !important;
-    background-color: whitesmoke !important;
-    color: black;
-    height: 2em !important;
-    text-indent: 5px;
+.pai-container{
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.input-bordered:hover,
-.input-bordered:focus {
-    border: 1px solid #80cbc4 !important;
+.home-login-facebook-button{
+    background-color: #1976d2;
 }
 
-/*Gradient */
-.home-container{
-    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
-    color: white;
-    opacity: 0.95;
+.home-login-facebook-button:hover{
+    background-color:#1e88e5;
+}
+
+.login-section{
+    margin-top: 5%;
+}
+
+.subscribe-button{
+    background-color: orange;
+    width: 80%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.subscribe-button:hover{
+    background-color: #fb8c00;
 }
