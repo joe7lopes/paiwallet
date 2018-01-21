@@ -9,12 +9,12 @@ class TopStocks extends React.Component{
             <div className="container">
                     <h4>Messages</h4>
                     <div className="row pai-container blue lighten-5">
-                        <div className="col s12 l8">
+                        <div className="col s12 l7">
                                 {/* TODO add admin message */}
                                 <Messages/>
                         </div>
-                            <div className="col s12 l4">
-                                <div className="pai-container green lighten-1">
+                            <div className="col s12 l5" style={{top: "15px", position: "relative"}}>
+                                <div className="pai-container green lighten-1" style={{marginBottom: "20px"}}>
                                     <h4>BUY</h4>
                                     <StocksTable/>
                                 </div>
