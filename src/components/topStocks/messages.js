@@ -1,34 +1,37 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { fetchMessages } from '../../actions';
 import Message from './message';
 import Pagination from './pagination';
 import {getTimeAgo} from './timeago';
 
 class Messages extends React.Component {
 
+    componentWillMount() {
+        this.props.fetchMessages();
+    }
+
+    renderMessages() {
+        let messages = this.props.messages;
+        console.log(messages);
+        return messages.map(message => {
+            let date = getTimeAgo(message.date);
+             return (
+                  <li key={message.id}><Message title={message.title} text={message.text} date={date}/></li>
+             );
+         });
+    }
+
     render(){
         const maxNumberOfPostsPerPage = 3;
         const activePage = 5;
         const numberOfPages = 5;
 
-        let adminMessages = [
-            {id:1, title: "title1", text:"message1", date: new Date()},
-            {id:2, title: "title1", text:"message2", date: new Date("01/21/2018")},
-            {id:3, title: "title1", text:"message3", date: new Date("3/3/2017")},
-            {id:4, title: "title1", text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti maxime, suscipit blanditiis officia consectetur nobis quam nemo inventore architecto, culpa iusto adipisci laborum repudiandae quibusdam tempore, magnam veritatis alias est.", date: new Date()},
-        ]
-
-        let messages = adminMessages.map(message => {
-           let date = getTimeAgo(message.date);
-            return (
-                 <li key={message.id}><Message title={message.title} text={message.text} date={date}/></li>
-            );
-        });
-
         return(
             <div className="">
                 <div>
                     <ul>
-                        {messages}
+                        {this.renderMessages()}
                     </ul>
                 </div>
                 <div className="center">
@@ -39,4 +42,10 @@ class Messages extends React.Component {
     }
 }
 
-export default Messages;
+function mapStateToProps(state){
+    return {
+      messages: state.messages,
+    };
+  }
+
+export default connect(mapStateToProps,{fetchMessages})(Messages);

@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
 import {reducer as formReducer} from 'redux-form';
-import marketReducer from './market_reducer';
+import messagesReducer from './messages_reducer';
 
 const rootReducer = combineReducers({
-    marketInfo: marketReducer,
+    messages: messagesReducer,
     form: formReducer
 });
 
