@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Message extends React.Component {
+class Post extends React.Component {
 
     render(){
 
@@ -20,4 +20,4 @@ class Message extends React.Component {
     }
 }
 
-export default Message;
+export default Post;

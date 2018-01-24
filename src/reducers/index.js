@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
 import {reducer as formReducer} from 'redux-form';
-import messagesReducer from './messages_reducer';
+import postsReducer from './posts_reducer';
 
 const rootReducer = combineReducers({
-    messages: messagesReducer,
+    posts: postsReducer,
     form: formReducer
 });
 
