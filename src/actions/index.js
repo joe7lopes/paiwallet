@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export function fetchPosts() {
 
-    //const request = axios.get("http://jsonplaceholder.typicode.com/posts");
+    // const request = axios.get("http://jsonplaceholder.typicode.com/posts");
 
     let request = [
         {id:1, title: "title1", text:"message1", date: new Date()},

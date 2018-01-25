@@ -20,8 +20,6 @@ class Pagination extends React.Component {
         this.props.pageHandler(pageNumber);
     }
 
-
-
     renderPageNumbers(){
         const {pages, activePage} = this.props;
         let elements = []

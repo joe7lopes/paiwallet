@@ -1,5 +1,6 @@
 import React from 'react';
 import Login from './auth/login';
+import {Link} from 'react-router-dom';
 
 class Home extends React.Component {
 
@@ -11,7 +12,7 @@ class Home extends React.Component {
                             <div className="col l6">
                                 <h1>Fundos de investimento</h1>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, voluptatibus obcaecati. Ipsam rem commodi reiciendis unde cupiditate, iure tempora consequuntur tempore quas ut aperiam nulla quod adipisci provident eligendi qui.</p>
-                                <a className="waves-effect waves-light btn-large subscribe-button"><i className="material-icons left">system_update</i>Subscribe</a>
+                                <Link className="waves-effect waves-light btn-large subscribe-button" to="/subscription"><i className="material-icons left">system_update</i>Subscribe</Link>
                                 <div className="row">
                                     <div className="col l6">
                                         <a className="waves-effect waves-light btn-large"><i className="material-icons left">system_update</i>Apps Store</a>

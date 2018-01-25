@@ -8,7 +8,7 @@ class Header extends React.Component {
                 <div className="nav-wrapper">
                     <nav role="navigation">
                         <div className="nav-wrapper container">
-                            <a className="brand-logo" href="#">PaiWallet</a>
+                            <a className="brand-logo">PaiWallet</a>
                             <ul id="nav-mobile" className="right hide-on-med-and-down">
                                 <li>
                                     <Link to="/">Home</Link>
