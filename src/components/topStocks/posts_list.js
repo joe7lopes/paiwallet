@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts, setCurrentPage } from '../../actions';
+import { fetchPosts} from '../../actions';
 import Post from './post';
-import Pagination from './pagination';
 import {getTimeAgo, chunkArray } from './utils';
 
 class PostsList extends React.Component {
@@ -10,9 +9,6 @@ class PostsList extends React.Component {
     constructor(){
         super()
         this.numberOfPostsPerPage = 3;
-        this.handleOnPreviousPage = this.handleOnPreviousPage.bind(this);
-        this.handlePageClick = this.handlePageClick.bind(this);
-        this.handleOnNextPage = this.handleOnNextPage.bind(this);
     }
 
     componentWillMount() {
@@ -67,13 +63,6 @@ class PostsList extends React.Component {
                                 {this.renderPosts()}
                             </ul>
                         </div>
-                        <div className="center">
-                            <Pagination pages={pages} 
-                                activePage={currentPage} 
-                                pageHandler={this.handlePageClick} 
-                                previousPageHandler={this.handleOnPreviousPage} 
-                                nextPageHandler={this.handleOnNextPage}/>
-                        </div>
                     </div>
                     ) : (<h4 className="teal-text">No posts to show</h4>)
                 }
@@ -89,4 +78,4 @@ function mapStateToProps(state){
     };
   }
 
-export default connect(mapStateToProps,{fetchPosts, setCurrentPage})(PostsList);
+export default connect(mapStateToProps,{fetchPosts})(PostsList);

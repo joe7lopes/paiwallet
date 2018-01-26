@@ -47,3 +47,12 @@ nav {
 .subscribe-button:hover{
     background-color: #fb8c00;
 }
+
+.posts-container {
+    height: 700px;
+    overflow-y: scroll;
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    
+}
