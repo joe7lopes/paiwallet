@@ -1,13 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { fetchStocks } from '../../../actions/stocks_action';
+import { startFetchStocks } from '../../../actions/stocks_action';
 import StocksTable from './stocks_table';
 
 class Stocks extends React.Component {
 
-
     componentWillMount(){
-        this.props.fetchStocks();
+        this.props.startFetchStocks();
     }
 
     rendeBuyStocks() {
@@ -47,4 +46,8 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps,{fetchStocks})(Stocks);
+// const mapDispatchToProps = (dispatch) => ({
+//     startFetchStocks: 
+// });
+
+export default connect(mapStateToProps,{startFetchStocks})(Stocks);

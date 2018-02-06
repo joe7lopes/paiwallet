@@ -3,7 +3,7 @@ import React from 'react';
 let renderStocks = stocks =>{
    return stocks.map(stock =>{
         return (
-            <tr key={stock.name}>
+            <tr key={stock.id}>
                 <td>{stock.name}</td>
                 <td>{stock.comment}</td>
             </tr>

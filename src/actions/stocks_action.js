@@ -1,58 +1,52 @@
 import database from '../firebase/firebase';
 import { 
     FETCH_STOCKS,
-    ADD_STOCK_ADVISE
+    ADD_STOCK_ADVISE,
+    FETCH_POSTS
 } from './types';
 
 const NODE = "stocks";
 const BUY_STOCKS_NODE = NODE + "/buy";
 const SELL_STOCKS_NODE = NODE + "/sell";
 
-export function fetchStocks(){
-    return (dispatch) => {
-        database.ref(NODE).once('value')
-            .then(stocks => {
-                let buyStocks = [];
-                stocks.buyStocks.forEach(stock => {
-                    buyStocks.push({
-                        id: stock.key,
-                        ...stock.val()
-                    });
-                });
+export const fetchStocks = (stocks = []) => {
+   return {
+       type: FETCH_STOCKS,
+       payload: stocks
+   }
+};
 
-                dispatch({
-                    type: FETCH_STOCKS,
-                    payload: {buyStocks, sellStocks: []}
-                });
-            }).catch(error =>{
-                dispatch({
-                    type: FETCH_STOCKS,
-                    payload: {buyStocks: [], sellStocks: []}
-                });
-            });
+export const startFetchStocks = () => {
+    return (dispatch) => {
+        return database.ref('stocks').once('value').then((snapshot) => {
+            dispatch(fetchStocks(snapshot.val()));
+        });
     };
 }
 
-export function addStockAdvise(stockAdvise = {}){
-   return (dispatch) => {
-       console.log(dispaching);
-       dispatch({
+export const addStockAdvise = (stockAdvise) => {
+    return {
         type: ADD_STOCK_ADVISE,
-        payload: []
-       });
-   }
-    // return (dispatch) => {
-    //     let stock = {
-    //         name: "reditus",
-    //         comment: "bl hh"
-    //     }
+        payload: stockAdvise
+    }
+ };
 
-    //     console.log(database);
-    //     database.ref('stocks/buy').push(stock).then(ref => {
-    //         dispatch({
-    //             type: ADD_STOCK_ADVISE,
-    //             payload: {}
-    //         });
-    //     });
-    // };
-};
+ export const startAddStockAdvise = (stockAdviseData = {}) => {
+     return (dispatch) => {
+        const node = stockAdviseData.adviseType == 'buy' ? BUY_STOCKS_NODE : SELL_STOCKS_NODE;
+        const {
+            name = '',
+            comment = '',
+            adviseType = ''
+        } = stockAdviseData;
+        const stockAdvise = {name, comment};
+
+        return database.ref(node).push(stockAdvise).then((ref) => {
+            dispatch(addStockAdvise({
+                id: ref.key,
+                adviseType, 
+                ...stockAdvise
+            }));
+        });
+     };
+ };
