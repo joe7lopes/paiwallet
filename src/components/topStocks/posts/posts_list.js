@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts} from '../../actions';
+import { fetchPosts} from '../../../actions/posts_action';
 import Post from './post';
-import {getTimeAgo, chunkArray } from './utils';
+import {getTimeAgo, chunkArray } from '../utils';
 
 class PostsList extends React.Component {
     
@@ -19,14 +19,13 @@ class PostsList extends React.Component {
         let { posts, currentPage }  = this.props;
 
        let pages = chunkArray(posts, this.numberOfPostsPerPage)
-       
-        let a = pages[currentPage-1] || [];
+        let postsPerPage = pages[currentPage-1] || [];
 
-        return a.map(post => {
-            //let date = getTimeAgo(message.date);
-            let date = getTimeAgo(new Date());
+        return postsPerPage.map(post => {
+            let date = new Date(post.date);
+            let postDate = getTimeAgo(date);
              return (
-                  <li key={post.id}><Post title={post.title} text={post.text} date={date}/></li>
+                  <li key={post.id}><Post title={post.title} text={post.text} date={postDate}/></li>
              );
          });
     }

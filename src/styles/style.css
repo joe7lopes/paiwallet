@@ -56,3 +56,28 @@ nav {
     box-sizing: border-box;
     
 }
+
+.new-post textarea{
+    height: 300px;
+}
+
+.new-post-collapsed{
+    border: 3px solid #eeeeee !important;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 0px;
+    margin-top: 20px;
+}
+
+.new-post-collapsed input[type="text"]{
+    padding: 0px;
+    margin: 0px;
+    text-indent: 10px;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.new-post-collapsed input[type="text"]:focus{
+    box-shadow: none !important;
+    border: none !important;
+}

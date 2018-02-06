@@ -1,9 +1,9 @@
 import React from 'react';
-import StocksTable from './stocks_table';
-import PostsList from './posts_list';
-import Pagination from './pagination';
 import { connect } from 'react-redux';
-import {setCurrentPage} from '../../actions';
+import { setCurrentPage } from '../../actions/posts_action';
+import PostsList from './posts/posts_list';
+import Pagination from './posts/pagination';
+import Stocks from './stocks/stocks';
 
 class TopStocks extends React.Component{
 
@@ -34,12 +34,10 @@ class TopStocks extends React.Component{
     }
 
     render(){
-
         const { currentPage, posts } = this.props;
         const numberOfPosts = posts.length;
         const pages = Math.ceil(numberOfPosts/this.numberOfPostsPerPage);
-
-
+        
         return (
             <div className="container">
                     <h4>Messages</h4>
@@ -58,16 +56,8 @@ class TopStocks extends React.Component{
                         </div>
                        
                         <div className="col s12 l5">
-                            <div className="pai-container green lighten-1" style={{marginBottom: "20px"}}>
-                                <h4>BUY</h4>
-                                <StocksTable/>
-                            </div>
-                            <div className="pai-container red lighten-1">
-                                <h4>Sell</h4>
-                                <StocksTable/>
-                            </div>
+                            <Stocks />
                         </div>
-                        
                     </div>
             </div>
         );
@@ -82,4 +72,4 @@ function mapStateToProps(state){
     };
   }
 
-export default connect(mapStateToProps,{setCurrentPage})(TopStocks);
+export default connect(mapStateToProps,{ setCurrentPage})(TopStocks);
