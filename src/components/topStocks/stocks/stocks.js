@@ -1,6 +1,6 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import { startFetchStocks } from '../../../actions/stocks_action';
+import { connect } from 'react-redux';
+import { startFetchStocks, startRemoveStockAdvise } from '../../../actions/stocks_action';
 import StocksTable from './stocks_table';
 
 class Stocks extends React.Component {
@@ -9,17 +9,21 @@ class Stocks extends React.Component {
         this.props.startFetchStocks();
     }
 
+    handleRemoveSockAdive = (stockAdvise) => {
+        this.props.startRemoveStockAdvise(stockAdvise);
+    }
+
     rendeBuyStocks() {
         const { buyStocks } = this.props;
         return (
-            <StocksTable stocks={buyStocks}/>
+            <StocksTable stocks={buyStocks} onRemove={this.handleRemoveSockAdive}/>
         );
     }
 
     rendeSellStocks() {
         const { sellStocks } = this.props;
         return (
-            <StocksTable stocks={sellStocks}/>
+            <StocksTable stocks={sellStocks} onRemove={this.handleRemoveSockAdive}/>
         );
     }
 
@@ -39,6 +43,11 @@ class Stocks extends React.Component {
     }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+    startRemoveStockAdvise: (stockAdvise) => {dispatch(startRemoveStockAdvise(stockAdvise))},
+    startFetchStocks: () => {dispatch(startFetchStocks())}
+});
+
 function mapStateToProps(state) {
     return {
         buyStocks: state.stocks.buyStocks,
@@ -46,8 +55,4 @@ function mapStateToProps(state) {
     }
 }
 
-// const mapDispatchToProps = (dispatch) => ({
-//     startFetchStocks: 
-// });
-
-export default connect(mapStateToProps,{startFetchStocks})(Stocks);
+export default connect(mapStateToProps,mapDispatchToProps)(Stocks);

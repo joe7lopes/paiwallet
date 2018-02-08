@@ -1,8 +1,8 @@
 import React from 'react';
 import CreatePost from './createPost';
-import EditStocks from '../stocks/editStocks';
+import CreateStock from './createStock';
 
-class NewPost extends React.Component{
+class Admin extends React.Component{
 
     render(){
         return (
@@ -13,7 +13,7 @@ class NewPost extends React.Component{
                         <CreatePost />
                     </div>
                     <div className="col s12 l5">
-                        <EditStocks />
+                        <CreateStock />
                     </div>
                 </div>
             </div>
@@ -21,4 +21,4 @@ class NewPost extends React.Component{
     }
 }
 
-export default NewPost;
+export default Admin;

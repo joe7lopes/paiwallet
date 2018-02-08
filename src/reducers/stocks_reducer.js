@@ -1,6 +1,7 @@
 import { 
     FETCH_STOCKS,
-    ADD_STOCK_ADVISE
+    ADD_STOCK_ADVISE,
+    REMOVE_STOCK_ADVISE
 } from '../actions/types';
 
 const INITIAL_STATE = {buyStocks: [], sellStocks:[]};
@@ -8,38 +9,48 @@ const INITIAL_STATE = {buyStocks: [], sellStocks:[]};
 export default function(state = INITIAL_STATE, action) {
 
     switch (action.type) {
-        case FETCH_STOCKS :
-            if (action.payload){
-                const buyStocksData = action.payload.buy || [];
-            const sellStocksData = action.payload.sell || [];
-            const buyStocks = getAsStocksArray(buyStocksData);
-            const sellStocks = getAsStocksArray(sellStocksData);
-            return {buyStocks: state.buyStocks.concat(buyStocks), sellStocks:state.sellStocks.concat(sellStocks) };    
-            }
-            return state;
-        case ADD_STOCK_ADVISE:
-            console.log(action.payload);
+        case FETCH_STOCKS :{
+                const buyStocks = action.payload.filter(stock =>{
+                    return stock.adviseType == "buy";
+                });
+                const sellStocks = action.payload.filter(stock =>{
+                    return stock.adviseType == "sell";
+                });
+
+            return {buyStocks, sellStocks};
+            
+        }
+        case ADD_STOCK_ADVISE :{
             const stockAdvise = action.payload;
-            if(stockAdvise === 'buy'){
-                return {...state, buyStocks: buyStocks.concat(stockAdvise)}
-            }else if(stockAdvise === 'sell'){
-                return {...state, buyStocks: sellStocks.concat(stockAdvise)}
+            const {adviseType} = stockAdvise;
+            if(adviseType == 'buy'){
+                return {...state, buyStocks: state.buyStocks.concat(stockAdvise)}
+            }else if(adviseType == 'sell'){
+                return {...state, buyStocks: state.sellStocks.concat(stockAdvise)}
             }else{
                 return state;
             }
+        }
+        case REMOVE_STOCK_ADVISE :{
+            const stockAdvise = action.payload;
+            const {adviseType} = stockAdvise;
+            if(adviseType == 'buy'){
+                let buyStocks = removeStockAdvise(stockAdvise,state.buyStocks);
+                return {...state, buyStocks}
+            }else if(adviseType == 'sell'){
+                let sellStocks = removeStockAdvise(stockAdvise,state.sellStocks);
+                return {...state, sellStocks}
+            }else{
+                return state;
+            }
+        }
         default:
             return state;
     }
 }
 
-const getAsStocksArray = (input) => {
-    const result = [];
-    Object.entries(input).forEach(([key, value]) => {
-        result.push({
-            id: key,
-            ...value
-        });
-      });
-
-    return result;
+const removeStockAdvise = (stockAdvise, array) => {
+    return array.filter(stock => {
+       return stock.id !== stockAdvise.id;
+    });
 }

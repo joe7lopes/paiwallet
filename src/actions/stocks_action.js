@@ -2,12 +2,10 @@ import database from '../firebase/firebase';
 import { 
     FETCH_STOCKS,
     ADD_STOCK_ADVISE,
-    FETCH_POSTS
+    REMOVE_STOCK_ADVISE
 } from './types';
 
-const NODE = "stocks";
-const BUY_STOCKS_NODE = NODE + "/buy";
-const SELL_STOCKS_NODE = NODE + "/sell";
+const DATA_REF = "stocks";
 
 export const fetchStocks = (stocks = []) => {
    return {
@@ -16,14 +14,6 @@ export const fetchStocks = (stocks = []) => {
    }
 };
 
-export const startFetchStocks = () => {
-    return (dispatch) => {
-        return database.ref('stocks').once('value').then((snapshot) => {
-            dispatch(fetchStocks(snapshot.val()));
-        });
-    };
-}
-
 export const addStockAdvise = (stockAdvise) => {
     return {
         type: ADD_STOCK_ADVISE,
@@ -31,22 +21,52 @@ export const addStockAdvise = (stockAdvise) => {
     }
  };
 
+ export const removeStockAdvise = (stockAdvise = {}) => {
+     return {
+         type: REMOVE_STOCK_ADVISE,
+         payload: stockAdvise
+     }
+ }
+
+ export const startFetchStocks = () => {
+    return (dispatch) => {
+        return database.ref(DATA_REF).once('value').then((snapshot) => {
+            const stocksAdvise = [];
+            snapshot.forEach((childSnapshot) => {
+                stocksAdvise.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                });
+            });
+
+            dispatch(fetchStocks(stocksAdvise));
+        });
+    };
+}
+
  export const startAddStockAdvise = (stockAdviseData = {}) => {
      return (dispatch) => {
-        const node = stockAdviseData.adviseType == 'buy' ? BUY_STOCKS_NODE : SELL_STOCKS_NODE;
         const {
             name = '',
             comment = '',
             adviseType = ''
         } = stockAdviseData;
-        const stockAdvise = {name, comment};
-
-        return database.ref(node).push(stockAdvise).then((ref) => {
+        const stockAdvise = {name, comment, adviseType};
+        
+        return database.ref(DATA_REF).push(stockAdvise).then((ref) => {
             dispatch(addStockAdvise({
                 id: ref.key,
-                adviseType, 
                 ...stockAdvise
             }));
         });
      };
  };
+
+ export const startRemoveStockAdvise = (stockAdvise = {}) => {
+     const {id} = stockAdvise;
+    return (dispatch) => {
+      return database.ref(`${DATA_REF}/${id}`).remove().then(() => {
+        dispatch(removeStockAdvise(stockAdvise));
+      });
+    };
+  };

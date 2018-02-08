@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { addPost } from '../../../actions/posts_action';
+import { addPost } from '../../actions/posts_action';
 
 
 let CreatePost = props => {

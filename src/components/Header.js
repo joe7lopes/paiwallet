@@ -20,7 +20,7 @@ class Header extends React.Component {
                                     <Link to="/topstocks">Top Stocks</Link>
                                 </li>
                                 <li>
-                                    <Link to="/new-post">Posts</Link>
+                                    <Link to="/admin">Admin</Link>
                                 </li>
                                 <li>
                                     <Link to="/disclaimer">Disclaimer</Link>
