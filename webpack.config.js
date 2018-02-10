@@ -1,54 +1,34 @@
-var webpack = require('webpack');
+const path = require('path');
 
-var config = {
-  devtool: "inline-source-map",
+module.exports = {
   entry: './src/app.js',
   output: {
-    path: __dirname,
-    publicPath: '/',
+    path: path.join(__dirname, 'public'),
     filename: 'bundle.js'
   },
-
   module: {
-    loaders: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ["react", "es2015", "stage-1"]
-        }
-      }, {
-        test: /(\.css$)/,
-        loaders: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.(png|jp(e*)g|svg)$/,  
-        use: [{
-            loader: 'file-loader',
-            options: { 
-                //limit: 8000, // Convert images < 8kb to base64 strings
-                name: 'images/[name].[ext]'
-            } 
-        }]
-      },
-      {
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
-        loader: 'file-loader',
-        options:{
-          name: 'fonts/[name].[ext]'
-        }
+    rules: [{
+      loader: 'babel-loader',
+      test: /\.js$/,
+      exclude: /node_modules/
+    }, {
+      test: (/\.s?css$/),
+      use: [
+        'style-loader',
+        'css-loader',
+        'sass-loader'
+      ]
+    },{
+      test: /\.(eot|svg|ttf|woff|woff2)$/,
+      loader: 'file-loader',
+      options:{
+        name: 'fonts/[name].[ext]'
       }
-    ]
+    }]
   },
-  
-  stats: {
-    errorDetails: true
-  },
-
+  devtool: 'cheap-module-eval-source-map',
   devServer: {
+    contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true
   }
 };
-
-module.exports = config;

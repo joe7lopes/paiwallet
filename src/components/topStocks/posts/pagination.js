@@ -3,14 +3,14 @@ import React from 'react';
 class Pagination extends React.Component {
 
     handleOnPreviewsPagesClick(){
-        const {pages, activePage} = this.props;
+        const {numberOfpages, activePage} = this.props;
         if(activePage == 1){return};
         this.props.previousPageHandler();
     }
 
     handleOnNextPagesClick(){
-        const {pages, activePage} = this.props;
-        if(activePage == pages){return};
+        const {numberOfpages, activePage} = this.props;
+        if(activePage == numberOfpages){return};
         this.props.nextPageHandler();
     }
 
@@ -21,9 +21,9 @@ class Pagination extends React.Component {
     }
 
     renderPageNumbers(){
-        const {pages, activePage} = this.props;
+        const {numberOfpages, activePage} = this.props;
         let elements = []
-        for(var i = 1; i<= pages; i++){
+        for(var i = 1; i<= numberOfpages; i++){
             let cssClass= (activePage == i) ? "active" : "waves-effect";
             let element =  <li key={i} className={cssClass}><a onClick={this.handleOnPageClick.bind(this, i)}>{i}</a></li>;
             elements.push(element);
@@ -34,10 +34,10 @@ class Pagination extends React.Component {
 
     render(){
 
-        const {pages, activePage} = this.props;
+        const {numberOfpages, activePage} = this.props;
         
         let cssFistElement = activePage == 1 ? "disabled" : "waves-effect";
-        let cssLastElement = activePage == pages ? "disabled" : "waves-effect";
+        let cssLastElement = activePage == numberOfpages ? "disabled" : "waves-effect";
 
         return (
             <ul className="pagination">

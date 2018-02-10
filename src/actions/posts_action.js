@@ -9,7 +9,21 @@ import {
 
 const NODE = "posts";
 
-export function fetchPosts() {
+export const fetchPosts = (posts = []) => {
+    return {
+        type: FETCH_POSTS,
+        payload: posts
+    }
+}
+
+export const addPost = (post = {}) => {
+    return {
+        type: ADD_POST,
+        payload: post
+    }
+}
+
+export const startFetchPosts = () => {
     return (dispatch) => {
         database.ref(NODE).once('value')
             .then((snapshot) => {
@@ -20,20 +34,9 @@ export function fetchPosts() {
                         ...childSnapshot.val()
                     });
                 });
-                
-                dispatch({
-                    type: FETCH_POSTS,
-                    payload: posts
-                });
-
-            }).catch(e=>{
-                dispatch({
-                    type: FETCH_POSTS,
-                    payload: []
-                });
+                dispatch(fetchPosts(posts));
             });
-
-    }
+    };
 
 }
 
@@ -45,7 +48,8 @@ export function setCurrentPage(pageNumber){
     }
 }
 
-export function addPost(postData = {}) {
+
+export const startAddPost = (postData = {}) => {
     return (dispatch) => {
         const {
             title = '',
@@ -60,10 +64,7 @@ export function addPost(postData = {}) {
                 id: ref.key,
                 ...post
             }
-            dispatch({
-                type: ADD_POST,
-                payload: newPost
-            });
+            dispatch(addPost(newPost));
         });
     };
 };
