@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from '../actions/types';
+import { LOGIN, LOGOUT, LOGIN_ERROR, CLEAR_LOGIN_ERROR } from '../actions/types';
 
 export default (state = {}, action) =>{
 
@@ -9,6 +9,16 @@ export default (state = {}, action) =>{
             }
         case LOGOUT:
             return {};
+        case LOGIN_ERROR:
+            return {
+                errors: action.payload
+            }
+        case CLEAR_LOGIN_ERROR:
+        console.log("in reducer");
+            return{
+                ...state,
+                errors:{}
+            }
         default:
             return state;
     }

@@ -81,3 +81,13 @@ nav {
     box-shadow: none !important;
     border: none !important;
 }
+
+.fullWidth{
+    width: 100%;
+}
+
+.alternative-login-text {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: left;
+}

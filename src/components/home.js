@@ -24,7 +24,7 @@ class Home extends React.Component {
                             </div>
                             <div className="col l6 center login-section">
                                 <h4>Access our TOP 10 stocks</h4>
-                                <Login/>
+                                <Login />
                             </div>
                         </div>
                     </div>

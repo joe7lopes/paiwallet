@@ -3,7 +3,7 @@ import {Router, Route, Switch} from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import PrivateRoute from './PrivateRoute';
 import AdminRoute from './AdminRoute';
-import Header from '../components/header';
+import Header from '../components/header/header';
 import Home from '../components/home';
 import Subscription from '../components/subscription/subscription';
 import TopStocks from '../components/topStocks/topStocks';

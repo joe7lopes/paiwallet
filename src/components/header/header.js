@@ -1,9 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import { startLogout } from '../actions/auth_action';
+import { startLogout } from '../../actions/auth_action';
 
-export const Header = ({startLogout}) => {
+export const Header = ({startLogout, isAuthenticated}) => {
+    const renderLogin = (
+        isAuthenticated &&
+        <li>
+            <a onClick={startLogout}>Logout</a>
+        </li>
+    )
     return (
             <div className="nav-wrapper">
                 <nav role="navigation">
@@ -25,9 +31,7 @@ export const Header = ({startLogout}) => {
                             <li>
                                 <Link to="/disclaimer">Disclaimer</Link>
                             </li>
-                            <li>
-                                <a onClick={startLogout}>Logout</a>
-                            </li>
+                            {renderLogin}
                         </ul>
                     </div>
                 </nav>
@@ -38,6 +42,10 @@ export const Header = ({startLogout}) => {
 
 const mapDispatchToProps = (dispatch) => ({
     startLogout: () => dispatch(startLogout())
-})
+});
 
-export default connect(undefined,mapDispatchToProps) (Header);
+const mapStateToProps = (state) => ({
+    isAuthenticated: !!state.auth.user
+});
+
+export default connect(mapStateToProps, mapDispatchToProps) (Header);
