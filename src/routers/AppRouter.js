@@ -1,21 +1,26 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Header from '../components/header';
+import {Router, Route, Switch} from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
+import PrivateRoute from './PrivateRoute';
+import AdminRoute from './AdminRoute';
+import Header from '../components/header/header';
 import Home from '../components/home';
 import Subscription from '../components/subscription/subscription';
 import TopStocks from '../components/topStocks/topStocks';
 import Admin from '../components/admin/admin';
 import NotFoundPage from '../components/notFoundPage';
 
+export const history = createHistory();
+
 const AppRouter = () => (
-    <Router>
+    <Router history={history}>
         <div>
         <Header/>
         <Switch>
             <Route path="/" component={Home} exact/>
             <Route path="/subscription" component={Subscription}/>
-            <Route path="/topstocks" component={TopStocks}/>
-            <Route path="/admin" component={Admin}/>
+            <PrivateRoute path="/topstocks" component={TopStocks}/>
+            <AdminRoute path="/admin" component={Admin}/>
             <Route component={NotFoundPage}/>
         </Switch>
         </div>
