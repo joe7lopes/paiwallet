@@ -5,11 +5,13 @@ import {
     CLEAR_LOGIN_ERROR
 } from './types';
 
-import {
+import database ,{
     firebase,
     googleAuthProvider,
     facebookAuthProvider
 } from '../firebase/firebase';
+
+const NODE= "users";
 
 export const login = (user = {}) => {
     return {
@@ -40,10 +42,12 @@ export const clearLoginError = () => {
 }
 
 export const startGoogleLogin = () => {
-    console.log("start goodle login");
-    return () => {
-        console.log("start goodle login2");
-        return firebase.auth().signInWithPopup(googleAuthProvider);
+    return (dispatch) => {
+        firebase.auth().signInWithPopup(googleAuthProvider)
+            .then(({ user }) =>{
+                createUserIfNotExists(user);
+                dispatch(login(user));
+            });
     };
 };
 
@@ -68,4 +72,17 @@ export const startLogout = () => {
     return () => {
         return firebase.auth().signOut();
     };
+};
+
+const createUserIfNotExists = async (user) =>{
+    const snap = await database.ref(`${NODE}/${user.uid}`).once('value');
+    if(!snap.val()) {
+      let newUser = {
+        subscriptionActive: false,
+        uid: user.uid,
+        email: user.email
+      }
+     database.ref(`${NODE}/${user.uid}`).set(newUser);
+    }
+        
 };

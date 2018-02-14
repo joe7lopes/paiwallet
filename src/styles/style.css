@@ -14,6 +14,13 @@ nav {
   color: white;
   background-color:#26a69a;
 }
+
+@media only screen and (min-width: 993px) {
+    .container {
+        width: 90%;
+    }
+}
+
 /*  transform button text */
 .btn, a{
     text-transform: none !important;

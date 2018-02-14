@@ -17,3 +17,5 @@ const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
 
 export { firebase, googleAuthProvider, facebookAuthProvider };
 export default database;
+
+
