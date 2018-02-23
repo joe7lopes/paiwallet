@@ -4,20 +4,20 @@ export default (state = {}, action) => {
   switch (action.type) {
     case LOGIN:
       return {
-        user: action.payload,
+        user: action.payload
       };
     case LOGOUT:
-      return {};
+      return state;
     case LOGIN_ERROR:
       return {
+        ...state,
         errors: action.payload,
       };
     case CLEAR_LOGIN_ERROR:
-      return {
-        ...state,
-        errors: {},
-      };
+      return {...state, errors: {}};
     default:
       return state;
   }
 };
+
+

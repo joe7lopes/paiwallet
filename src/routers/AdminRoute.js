@@ -13,7 +13,7 @@ export const  AdminRoute = ({
 );
 
 const mapStateToProps = (state) =>({
-    isAdmin: state.auth.user && state.auth.user.uid === "zZmKsV5OeWcPEZY5zZlW0eHKBCa2"
+    isAdmin: !!state.auth.user.admin
 });
 
 export default connect(mapStateToProps, undefined)(AdminRoute);

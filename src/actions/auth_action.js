@@ -45,8 +45,7 @@ export const startGoogleLogin = () => {
     return (dispatch) => {
         firebase.auth().signInWithPopup(googleAuthProvider)
             .then(({ user }) =>{
-                createUserIfNotExists(user);
-                dispatch(login(user));
+                createUserIfNotExists(user, dispatch);
             });
     };
 };
@@ -74,15 +73,19 @@ export const startLogout = () => {
     };
 };
 
-const createUserIfNotExists = async (user) =>{
-    const snap = await database.ref(`${NODE}/${user.uid}`).once('value');
+const createUserIfNotExists = async (firebaseUser, dispatch) =>{
+    const snap = await database.ref(`${NODE}/${firebaseUser.uid}`).once('value');
+    
     if(!snap.val()) {
-      let newUser = {
-        subscriptionActive: false,
-        uid: user.uid,
-        email: user.email
-      }
-     database.ref(`${NODE}/${user.uid}`).set(newUser);
+        let user = {
+            subscriptionActive: false,
+            uid: firebaseUser.uid,
+            email: firebaseUser.email
+          }
+        database.ref(`${NODE}/${user.uid}`).set(user)
+            .then(dispatch(login(user)));
+    }else{
+        dispatch(login(snap.val()));
     }
         
 };
