@@ -7,7 +7,7 @@ class CreatePost extends React.Component{
     render(){
         const { startAddPost, handleSubmit, reset, pristine, submitting } = this.props;
         return(
-            <div className="card pai-container white black-text" style={{margin: "0px"}}>
+            <div>
                 <form onSubmit={handleSubmit(startAddPost)}>
                     <div className="card-content">
                             <Field component="input" type="text" name="title" placeholder="New Title" required/>

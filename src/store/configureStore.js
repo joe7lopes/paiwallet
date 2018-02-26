@@ -4,6 +4,7 @@ import reduxThunk from 'redux-thunk';
 import postsReducer from '../reducers/posts_reducer';
 import stocksReducer from '../reducers/stocks_reducer';
 import authReducer from '../reducers/auth_reducer';
+import usersReducer from '../reducers/users_reducer';
 
 export default () => {
     const store =  createStore(
@@ -11,6 +12,7 @@ export default () => {
             posts: postsReducer,
             stocks: stocksReducer,
             auth: authReducer,
+            users: usersReducer,
             form: formReducer
         }),
         applyMiddleware(reduxThunk)

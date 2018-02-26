@@ -15,16 +15,13 @@ const store = configureStore();
 ReactDOM.render(
   <Provider store={store}>
     <AppRouter />
-  </Provider>, document.getElementById('app'));
+  </Provider>
+, document.getElementById('app'));
 
-firebase.auth().onAuthStateChanged((user)=>{
-  if (user){
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
     store.dispatch(login(user));
-    history.push('/topstocks');
-  }else{
+  } else {
     store.dispatch(logout());
-    if(history.location.pathname === '/topstocks'){
-      history.push('/');
-    }
   }
 });

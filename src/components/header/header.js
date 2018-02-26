@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import { startLogout } from '../../actions/auth_action';
+import { Dropdown, NavItem } from 'react-materialize';
 
 class Header extends React.Component{
 
@@ -11,17 +12,20 @@ class Header extends React.Component{
         </li>
     );
     
-    renderLogout = () => (
+    renderAccount = () => (
         <li>
+           <Dropdown trigger={
+                <a>Account<i className="material-icons right">arrow_drop_down</i></a>
+            }>
+                <Link to='/account'>My Profile</Link>
+                <NavItem divider />
                 <a onClick={this.props.startLogout}>Logout</a>
+            </Dropdown>
         </li>
     );
     
     render(){
         const { isAuthenticated, isAdmin } = this.props;
-        console.log("render called");
-        console.log("is auth", isAuthenticated);
-        console.log("is admin", isAdmin);
         return (
                 <div className="nav-wrapper">
                     <nav role="navigation">
@@ -41,7 +45,7 @@ class Header extends React.Component{
                                 <li>
                                     <Link to="/disclaimer">Disclaimer</Link>
                                 </li>
-                                { isAuthenticated && this.renderLogout() }
+                                { isAuthenticated && this.renderAccount() }
                             </ul>
                         </div>
                     </nav>

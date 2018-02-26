@@ -98,3 +98,17 @@ nav {
     margin-bottom: 5px;
     text-align: left;
 }
+
+/*Account status */
+
+.status-completed{
+    color: #4caf50;
+}
+
+.status-pending{
+    color: #ffeb3b;
+}
+
+.status-missing{
+    color: #f44336;
+}

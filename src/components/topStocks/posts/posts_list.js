@@ -14,7 +14,6 @@ class PostsList extends React.Component {
         this.handleOnPreviousPage = this.handleOnPreviousPage.bind(this);
         this.handlePageClick = this.handlePageClick.bind(this);
         this.handleOnNextPage = this.handleOnNextPage.bind(this);
-        this.handleOnRemovePost = this.handleOnRemovePost.bind(this);
         this.state = {
             currentPage: 1
         }
@@ -36,10 +35,6 @@ class PostsList extends React.Component {
         this.setState({currentPage})
     }
 
-    handleOnRemovePost(post){
-        console.log("remove", post);
-    }
-
     setCurrentPage(value) {
         let currentPage = this.state.currentPage + value;
         this.setState({currentPage});
@@ -59,7 +54,7 @@ class PostsList extends React.Component {
             let date = new Date(post.date);
             let postDate = getTimeAgo(date);
             return (
-                <li key={post.id}><Post title={post.title} text={post.text} date={postDate} onRemove={()=>this.handleOnRemovePost(post)}/></li>
+                <li key={post.id}><Post title={post.title} text={post.text} date={postDate} /></li>
             );
         });
     }

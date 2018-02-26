@@ -15,32 +15,21 @@ class CreateStock extends React.Component {
     render(){
             const { startAddStockAdvise, handleSubmit, reset, pristine, submitting } = this.props;
             const textAreaStyle = {
-                backgroundColor: "white",
-                color:"black",
-                borderRadius: "5px",
                 height:"100px"
             }
-        
-            const titleStyle = {
-                color: "black",
-                backgroundColor: "white",
-                borderRadius: "5px",
-                marginTop: "5px"
-            }
-
         return(
             <div>
-                <div className="pai-container orange lighten-1">
+                <div>
                     <form onSubmit={handleSubmit(this.onSubmit)}>
                         <label>Advise type</label>
                         <Field component="select"
                             name="adviseType"
                             className="browser-default"
-                            style={{color:"black"}}>
+                            >
                                 <option value="buy">Buy</option>
                                 <option value="sell">Sell</option>
                         </Field>
-                        <Field component="input" type="text" name="name" placeholder="company name" required style={titleStyle}/>
+                        <Field component="input" type="text" name="name" placeholder="company name" required/>
                         <Field component="textarea" style={textAreaStyle} name="comment" placeholder="comment" required/>
                         <button type="button" className="waves-effect waves-light btn blue" style={{marginRight: "10px"}} onClick={reset}>
                             Cancel

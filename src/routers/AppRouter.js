@@ -9,6 +9,7 @@ import Subscription from '../components/subscription/subscription';
 import TopStocks from '../components/topStocks/topStocks';
 import Admin from '../components/admin/admin';
 import NotFoundPage from '../components/notFoundPage';
+import Account from '../components/account/Account';
 
 export const history = createHistory();
 
@@ -20,6 +21,7 @@ const AppRouter = () => (
             <Route path="/" component={Home} exact/>
             <Route path="/subscription" component={Subscription}/>
             <PrivateRoute path="/topstocks" component={TopStocks}/>
+            <PrivateRoute path="/account" component={Account}/>
             <AdminRoute path="/admin" component={Admin}/>
             <Route component={NotFoundPage}/>
         </Switch>
