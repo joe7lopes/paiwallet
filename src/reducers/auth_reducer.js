@@ -1,20 +1,14 @@
-import { LOGIN, LOGOUT, LOGIN_ERROR, CLEAR_LOGIN_ERROR } from '../actions/types';
+import { LOGIN, LOGOUT } from '../actions/types';
 
-export default (state = {}, action) => {
+const INITIAL_STATE = {}
+export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case LOGIN:
       return {
         user: action.payload
       };
     case LOGOUT:
-      return state;
-    case LOGIN_ERROR:
-      return {
-        ...state,
-        errors: action.payload,
-      };
-    case CLEAR_LOGIN_ERROR:
-      return {...state, errors: {}};
+      return INITIAL_STATE;
     default:
       return state;
   }

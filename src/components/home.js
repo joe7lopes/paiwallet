@@ -9,7 +9,7 @@ class Home extends React.Component {
         const { isAuthenticated } = this.props;
         return (
                 <section>
-                    <div>
+                    <div className="pai-wallet-background">
                         <div className="row container">
                             <div className="col l6">
                                 <h1>Fundos de investimento</h1>

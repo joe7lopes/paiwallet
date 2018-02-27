@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { startFetchStocks, startRemoveStockAdvise } from '../../../actions/stocks_action';
+import { startFetchStocks } from '../../../actions/stocks_action';
 import StocksTable from './stocks_table';
 
 class Stocks extends React.Component {
@@ -16,14 +16,14 @@ class Stocks extends React.Component {
     rendeBuyStocks() {
         const { buyStocks } = this.props;
         return (
-            <StocksTable stocks={buyStocks} onRemove={this.handleRemoveSockAdive}/>
+            <StocksTable stocks={buyStocks} />
         );
     }
 
     rendeSellStocks() {
         const { sellStocks } = this.props;
         return (
-            <StocksTable stocks={sellStocks} onRemove={this.handleRemoveSockAdive}/>
+            <StocksTable stocks={sellStocks}/>
         );
     }
 

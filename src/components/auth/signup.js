@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Signup extends React.Component{
     render(){
@@ -36,12 +37,13 @@ class Signup extends React.Component{
                         </div>
                     </div>
                     <div className="row">
-                            <div className="col m12 center">
-                                <div className="input-field col m3">
-                                    <button className="btn waves-effect waves-light" type="submit" name="action">Sign up</button>
-                                </div>
-                                <div className="input-field col m9">
-                                    <button className="btn waves-effect waves-light home-login-facebook-button" type="submit" name="action">Connect with FaceBook</button>
+                            <div className="col s12">
+                                <div className="input-field">
+                                    <button className="btn waves-effect waves-light fullWidth" type="submit" name="action" disabled>Sign up</button>
+                                    <h5>At the moment only login with google is possible</h5>
+                                    <div className="center">
+                                        <Link to="/">Login with google</Link>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1,8 +1,9 @@
-body{
+.pai-wallet-background {
     background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
     color: white;
     opacity: 0.95;
     height:100vh;
+    min-height: 100%;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
