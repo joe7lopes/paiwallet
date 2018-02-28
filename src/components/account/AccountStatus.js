@@ -41,8 +41,8 @@ export const AccountStatus = ({isAccountCreated, isSubscriptionPaid}) => {
 )};
 
 const mapStateToProps = (state) => ({
-    isAccountCreated: !!state.auth.user,
-    isSubscriptionPaid: !!state.auth.user && !!state.auth.user.subscriptionActive
+    isAccountCreated: !!state.users.loggedInUser,
+    isSubscriptionPaid: !!state.users.loggedInUser && !!state.users.loggedInUser.subscriptionActive
 });
 
 export default connect(mapStateToProps) (AccountStatus);

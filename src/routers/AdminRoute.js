@@ -13,7 +13,7 @@ export const  AdminRoute = ({
 );
 
 const mapStateToProps = (state) =>({
-     isAdmin: state.auth.user && !!state.auth.user.admin
+     isAdmin: state.users.loggedInUser && !!state.users.loggedInUser.admin
 });
 
 export default connect(mapStateToProps, undefined)(AdminRoute);

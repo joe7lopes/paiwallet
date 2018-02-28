@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
     startGoogleLogin,
-    startFacebookLogin,
-    startEmailLogin,
-    clearLoginError
-} from '../../actions/auth_action';
+} from '../../actions/users_action';
 
 class Login extends React.Component{
 
@@ -61,7 +58,7 @@ class Login extends React.Component{
                     </div>
                     <div className="col s12 l6">
                         <a className="waves-effect waves-light btn blue darken-2 fullWidth"
-                            onClick={startFacebookLogin} disabled>
+                             disabled>
                             <i className="material-icons right">face</i>
                             FaceBook
                         </a>

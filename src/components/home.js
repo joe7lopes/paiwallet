@@ -39,7 +39,7 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    isAuthenticated : !! state.auth.user
+    isAuthenticated : !! state.users.loggedInUser
 });
 
 export default connect(mapStateToProps, undefined) (Home);

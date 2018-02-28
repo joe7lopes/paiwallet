@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
-import { startLogout } from '../../actions/auth_action';
+import { startLogout } from '../../actions/users_action';
 import { Dropdown, NavItem, SideNav, SideNavItem, Button } from 'react-materialize';
 
 
@@ -52,7 +52,6 @@ class Header extends React.Component{
     
     render(){
         const { isAuthenticated, isAdmin } = this.props;
-        console.log("in header admin", isAdmin);
         return (
                 <div className="nav-wrapper">
                     <nav role="navigation">
@@ -87,8 +86,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-    isAuthenticated: !!state.auth.user,
-    isAdmin: !!state.auth.user && !!state.auth.user.admin
+    isAuthenticated: !!state.users.loggedInUser,
+    isAdmin: !!state.users.loggedInUser && !!state.users.loggedInUser.admin
 });
 
 export default connect(mapStateToProps, mapDispatchToProps) (Header);

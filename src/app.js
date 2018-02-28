@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import database, { firebase} from './firebase/firebase';
-import { login, logout } from './actions/auth_action';
-import { fetchPosts } from './actions/posts_action';
+import database, {firebase} from './firebase/firebase';
+import { login, logout, fetchUsers } from './actions/users_action';
+
 import $ from 'jquery/dist/jquery.js';
 import 'materialize-css/dist/js/materialize.js';
 import 'materialize-css/dist/css/materialize.css';
@@ -23,8 +23,10 @@ ReactDOM.render(
 /* Firebase event listeners */
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    //TODO, login user from users data.
-    store.dispatch(login(user));
+    database.ref(`users/${user.uid}`).once('value').then(snapshot => {
+      store.dispatch(login(snapshot.val()));
+    });
+
   } else {
     store.dispatch(logout());
   }

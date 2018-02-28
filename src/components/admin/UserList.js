@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { startFetchUsers, startEditUser } from '../../actions/users_action';
 
 class UserList extends React.Component {
-  componentWillMount() {
+
+  componentWillMount(){
     this.props.fetchUsers();
   }
 
   handleOnSubscriptionActiveChanged(user, e) {
-    const value = !!e.target.checked;
-    this.props.startEditUser(user,{subscriptionActive: value});
+   const value = !!e.target.checked;
+   this.props.startEditUser(user,{subscriptionActive: value});
   }
 
   getFullName(firstName, lastName) {
@@ -24,7 +25,8 @@ class UserList extends React.Component {
   }
 
   renderUsers() {
-    return this.props.users.map((user) => {
+    const { users } = this.props;
+    return users.map( (user, index) => {
       const name = this.getFullName();
       return (
         <tr key={user.uid}>
@@ -33,12 +35,11 @@ class UserList extends React.Component {
           <td>{user.email}</td>
           <td>
             <div className="switch">
-              <label htmlFor="switcher">
+              <label>
                 <input
-                  id="switcher"
-                  defaultChecked={!!user.subscriptionActive}
+                  checked={!!user.subscriptionActive}
                   type="checkbox"
-                  onClick={this.handleOnSubscriptionActiveChanged.bind(this,user)}
+                  onChange= {this.handleOnSubscriptionActiveChanged.bind(this,user)}
                 />
                 <span className="lever" />
               </label>
@@ -47,6 +48,7 @@ class UserList extends React.Component {
         </tr>
       );
     });
+
   }
 
   render() {
@@ -71,7 +73,7 @@ class UserList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  users: state.users,
+  users: state.users.users,
 });
 
 const mapDispatchToProps = dispatch => ({
