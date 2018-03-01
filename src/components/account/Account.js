@@ -11,15 +11,15 @@ const renderAccountData = (user) => (
         <div className= "col s12 l6">
           <div className="input-field col s6">
             <input id="first_name" type="text" readOnly value={user.firstName}/>
-            <label className="active grey-text text-lighten-3" htmlFor="first_name">First Name</label>
+            <label className="active" htmlFor="first_name">First Name</label>
           </div>
           <div className="input-field col s6">
             <input id="last_name" type="text" readOnly value={user.lastName}/>
-            <label className="active grey-text text-lighten-3" htmlFor="last_name">Last Name</label>
+            <label className="active" htmlFor="last_name">Last Name</label>
           </div>
               <div className="input-field col s12 l6">
                 <input id="email" type="email" readOnly value={user.email}/>
-                <label className="active grey-text text-lighten-3" htmlFor="email">Email</label>
+                <label className="active" htmlFor="email">Email</label>
             </div>
         </div>
       </div>

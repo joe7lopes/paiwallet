@@ -42,14 +42,16 @@ class PostsList extends React.Component {
 
     getPages(){
         let {posts} = this.props;
-        return chunkArray(posts, this.numberOfPostsPerPage);
+        let sortedPosts = [].concat(posts)
+            .sort((post1, post2) => post1.date < post2.date)
+        return chunkArray(sortedPosts, this.numberOfPostsPerPage);
     }
 
     renderPosts() {
         const {currentPage} = this.state;
         let pages = this.getPages();
         let postsPerPage = pages[currentPage - 1] || [];
-
+        
         return postsPerPage.map(post => {
             let date = new Date(post.date);
             let postDate = getTimeAgo(date);

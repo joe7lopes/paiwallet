@@ -23,7 +23,7 @@ ReactDOM.render(
 /* Firebase event listeners */
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    database.ref(`users/${user.uid}`).once('value').then(snapshot => {
+    database.ref(`users/${user.uid}`).on('value', snapshot => {
       store.dispatch(login(snapshot.val()));
     });
 

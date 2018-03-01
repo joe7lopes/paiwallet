@@ -1,4 +1,10 @@
-import { FETCH_USERS, EDIT_USER, LOGIN, LOGOUT } from './types';
+import { 
+    FETCH_USERS,
+    EDIT_USER_PEDDING,
+    EDIT_USER_ERROR,
+    EDIT_USER_COMPLETED,
+    LOGIN,
+    LOGOUT } from './types';
 import database, { firebase, googleAuthProvider } from '../firebase/firebase';
 
 const NODE = 'users';
@@ -10,9 +16,9 @@ export const fetchUsers = (users = []) =>{
     }
 }
 
-export const editUser = (user, updates) => {
+export const editUserCompleted = (user, updates) => {
     return {
-        type: EDIT_USER,
+        type: EDIT_USER_COMPLETED,
         payload: {user, updates}
     }
 }
@@ -32,16 +38,22 @@ export const logout = (user = {}) => {
 
 export const startEditUser = (user, updates) => {
     return (dispatch) => {
-        return database.ref(`${NODE}/${user.uid}`).update(updates)
+        dispatch({type: EDIT_USER_PEDDING});
+        database.ref(`${NODE}/${user.uid}`).update(updates)
             .then(()=>{
-                dispatch(editUser(user, updates));
+                dispatch(editUserCompleted(user, updates));
+            }).catch((err)=>{
+                dispatch({
+                    type: EDIT_USER_ERROR,
+                    payload: err
+                });
             });
-    }
+    };
 };
 
 export const  startFetchUsers = () =>{
     return (dispatch) =>{
-       return database.ref(NODE).on('value', snapshot =>{
+        database.ref(NODE).on('value', snapshot =>{
                 let users = [];
                 snapshot.forEach(snap => {
                     users.push({
@@ -57,7 +69,7 @@ export const  startFetchUsers = () =>{
 
 export const startGoogleLogin = () => {
     return (dispatch) => {
-       return firebase.auth().signInWithPopup(googleAuthProvider)
+       firebase.auth().signInWithPopup(googleAuthProvider)
             .then(({ user }) =>{
                 createUserIfNotExists(user, dispatch);
             });
@@ -66,7 +78,7 @@ export const startGoogleLogin = () => {
 
 export const startLogout = () => {
     return (dispatch) => {
-        return firebase.auth().signOut().then(()=>{
+        firebase.auth().signOut().then(()=>{
             dispatch(logout());
         })
     };

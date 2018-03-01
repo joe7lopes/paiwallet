@@ -9,4 +9,7 @@ export const LOGIN= 'login';
 export const LOGOUT= 'logout';
 
 export const FETCH_USERS = 'fetch_users';
-export const EDIT_USER = 'edit_user';
+
+export const EDIT_USER_PEDDING = 'edit_user_pending';
+export const EDIT_USER_ERROR = 'edit_user_error';
+export const EDIT_USER_COMPLETED = 'edit_user_completed';

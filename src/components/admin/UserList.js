@@ -51,6 +51,30 @@ class UserList extends React.Component {
 
   }
 
+  renderSaving(){
+    return (
+        <div className="preloader-wrapper small active right">
+          <div className="spinner-layer spinner-green-only">
+            <div className="circle-clipper left">
+              <div className="circle"></div>
+            </div><div className="gap-patch">
+              <div className="circle"></div>
+            </div><div className="circle-clipper right">
+              <div className="circle"></div>
+            </div>
+          </div>
+        </div>
+    );
+  }
+
+  renderError(){
+      return(
+        <div className="red-text">
+          <p>{this.props.savingError.message}</p>
+        </div>
+      )
+  }
+
   render() {
     return (
       <section>
@@ -66,6 +90,17 @@ class UserList extends React.Component {
           <tbody>
             {this.renderUsers()}
           </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                {this.props.isSaving && this.renderSaving()}
+                {this.props.savingError && this.renderError()}
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </section>
     );
@@ -74,6 +109,8 @@ class UserList extends React.Component {
 
 const mapStateToProps = state => ({
   users: state.users.users,
+  isSaving: state.users.isSaving,
+  savingError: state.users.editingUserError
 });
 
 const mapDispatchToProps = dispatch => ({
