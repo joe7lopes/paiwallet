@@ -1,28 +1,39 @@
 version: 2
 jobs:
-  build:
+  test:
     docker:
-      # specify the version you desire here
       - image: circleci/node:7.10
-
-    working_directory: ~/repo
-
+        environment:
+          NODE_ENV: test
+    working_directory: ~/pai-wallet
     steps:
-      - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-        
-      - run: npm install
-      # run tests!
-      - run: npm run test
+      - checkout  
+      - run:
+          name: Install npm dependencies
+          command: npm install
+      - run:
+          name: Run tests
+          command: npm run test
+  deploy:
+    docker:
+      - image: circleci/node:7.10
+        environment:
+          NODE_ENV: production
+    working_directory: ~/pai-wallet
+    steps:
+      - run:
+          name: Deploy to Firebase
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
 
 
