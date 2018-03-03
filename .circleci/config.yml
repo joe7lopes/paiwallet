@@ -3,12 +3,12 @@ jobs:
   build:
     working_directory: ~/pai-wallet
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:8.2.1
     steps:
       - checkout
-      # - run:
-      #     name: Update npm
-          # command: 'sudo npm install -g npm@5.5.1'
+      - run:
+          name: Update npm
+          command: 'sudo npm install -g npm@5.5.1'
       - restore_cache:
           key: dependecy-cache-{{ checksum "package.json" }}
       - run: 
@@ -18,31 +18,18 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-  test:
-    docker:
-      - image: circleci/node:7.10
-        # environment:
-        #   NODE_ENV: test
-    steps:
-      - checkout
-      - run: 
-          name: Install npm dependencies 2
-          command: npm install
-      - run:
-          name: Run tests
-          command: npm run test
   deploy:
     environment:
       NODE_ENV: production
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:8.2.1
     steps:
       - checkout
       - run: 
           name: Install npm dependencies on deploy
           command: npm install
       - run:
-          name: Build webpack
+          name: Build Webpack
           command: npm run build
       - run:
           name: Deploy to Firebase
@@ -52,13 +39,9 @@ workflows:
   build_and_test_and_deploy:
     jobs:
       - build
-      # - test:
-      #     requires:
-      #       - build
       - deploy:
           requires:
             - build
-            # - test
           filters:
             branches:
               only: master
