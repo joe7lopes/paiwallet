@@ -1,13 +1,15 @@
 import React from 'react';
 import Login from './auth/login';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Home extends React.Component {
 
     render() {
+        const { isAuthenticated } = this.props;
         return (
                 <section>
-                    <div>
+                    <div className="pai-wallet-background">
                         <div className="row container">
                             <div className="col l6">
                                 <h1>Fundos de investimento</h1>
@@ -24,7 +26,10 @@ class Home extends React.Component {
                             </div>
                             <div className="col l6 center login-section">
                                 <h4>Access our TOP 10 stocks</h4>
-                                <Login />
+                                {isAuthenticated ? 
+                                    <Link to="/topstocks" className="waves-effect waves-light btn-large">Go to top stocks </Link>
+                                : <Login />
+                                }
                             </div>
                         </div>
                     </div>
@@ -33,4 +38,8 @@ class Home extends React.Component {
     }
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+    isAuthenticated : !! state.users.loggedInUser
+});
+
+export default connect(mapStateToProps, undefined) (Home);

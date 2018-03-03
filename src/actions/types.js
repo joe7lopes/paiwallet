@@ -7,5 +7,9 @@ export const REMOVE_STOCK_ADVISE= 'remove_stock_advise';
 
 export const LOGIN= 'login';
 export const LOGOUT= 'logout';
-export const LOGIN_ERROR= 'login_error';
-export const CLEAR_LOGIN_ERROR= 'clear_login_error';
+
+export const FETCH_USERS = 'fetch_users';
+
+export const EDIT_USER_PEDDING = 'edit_user_pending';
+export const EDIT_USER_ERROR = 'edit_user_error';
+export const EDIT_USER_COMPLETED = 'edit_user_completed';

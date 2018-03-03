@@ -3,75 +3,12 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
     startGoogleLogin,
-    startFacebookLogin,
-    startEmailLogin,
-    clearLoginError
-} from '../../actions/auth_action';
+} from '../../actions/users_action';
 
 class Login extends React.Component{
-    constructor(props){
-        super(props);
-        
-        this.state = {
-            email: '',
-            password: '',
-            emailError:''
-        }
-
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.renderError = this.renderError.bind(this);
-    }
-
-    componentWillReceiveProps(props){
-        const {error} = props
-        if(error.code === 'auth/invalid-email'){
-            let emailError = error.message;
-            this.setState({emailError});
-        }
-    }
-
-    handleInputChange(event){
-        this.clearErros()
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
-        this.setState({
-          [name]: value
-        });
-    }
-
-    clearErros(){
-        this.setState({emailError: ''});
-    }
-
-    handleSubmit(e){
-        e.preventDefault();
-        const { email, password } = this.state;
-        this.props.startEmailLogin(email, password);
-    }
-
-    renderError(){
-        const { error } = this.props;
-        if (error){
-            return this.getHTMLForError(error);
-        }
-    }
-
-    getHTMLForError(error){
-        if(error.code === 'auth/user-not-found'){
-            return (
-                <p className="red-text">User does not exist.
-                    &nbsp;<Link to="/subscription" onClick={this.props.clearLoginError}>Create Account!</Link>
-                </p>
-            )
-        }
-    }
 
     render(){
-
-        const { email, password, emailError } = this.state;
-        const { startGoogleLogin, startFacebookLogin } = this.props;
+        const { startGoogleLogin } = this.props;
 
         return(
             <div className="pai-container blue lighten-5" style={{color: "teal"}}>
@@ -83,10 +20,8 @@ class Login extends React.Component{
                             name="email" 
                             type="email" 
                             required
-                            className={emailError ? "invalid": "validate"} 
-                            value={email} 
-                            onChange={this.handleInputChange}/>
-                        <label htmlFor="email" data-error={emailError}>email</label>
+                            disabled/>
+                        <label htmlFor="email">email</label>
                     </div>
                     <div className="input-field">
                         <i className="material-icons prefix">lock_outline</i>
@@ -96,19 +31,22 @@ class Login extends React.Component{
                             type="password" 
                             className="validate"
                             required
-                            value={password} 
-                            onChange={this.handleInputChange}/>
+                            disabled/>
                         <label htmlFor="pass" data-error="wrong">password</label>
                     </div>
-                    <div className="input-field">
-                        {this.renderError()}
-                        <button type="submit" className="btn waves-effect waves-light fullWidth">
-                            Login
-                        </button>
+                    <div className="row">
+                        <div className="col s12 l8">
+                            <button type="submit" className="btn waves-effect waves-light fullWidth" disabled>
+                                Login
+                            </button>
+                        </div>
+                        <div className="col s12 l4">
+                            <Link to='/subscription'>Create account</Link>
+                        </div>
                     </div>
                 </form>
                 <div className="input-field grey-text alternative-login-text">
-                    Or Login With
+                    <span>Or Login With</span>
                 </div>
                 <div className="row">
                     <div className="col s12 l6">
@@ -120,7 +58,7 @@ class Login extends React.Component{
                     </div>
                     <div className="col s12 l6">
                         <a className="waves-effect waves-light btn blue darken-2 fullWidth"
-                            onClick={startFacebookLogin}>
+                             disabled>
                             <i className="material-icons right">face</i>
                             FaceBook
                         </a>
@@ -131,16 +69,7 @@ class Login extends React.Component{
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    startGoogleLogin: () => dispatch(startGoogleLogin()),
-    startFacebookLogin: () => dispatch(startFacebookLogin()),
-    startEmailLogin: (email, password) => dispatch(startEmailLogin(email, password)),
-    clearLoginError: () => dispatch(clearLoginError())
+    startGoogleLogin: () => dispatch(startGoogleLogin())
 });
 
-const mapStateToProps = (state) => {
-    return {
-        error: state.auth.errors
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(undefined, mapDispatchToProps)(Login);

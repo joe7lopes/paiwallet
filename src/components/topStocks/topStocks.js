@@ -8,15 +8,18 @@ class TopStocks extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                <h4>Messages</h4>
-                <div className="row">
-                    <div className="col s12 l7 pai-container blue lighten-5">
-                        <PostsList/>
-                    </div>
-
-                    <div className="col s12 l5">
-                        <Stocks/>
+            <div className="pai-wallet-background">
+                <div className="container">
+                    <div className="row">
+                        <div className= "col s12 l12">
+                            <h4>Messages</h4>
+                        </div>
+                        <div className="col s12 l7 pai-container blue lighten-5">
+                            <PostsList/>
+                        </div>
+                        <div className="col s12 l5">
+                            <Stocks/>
+                        </div>
                     </div>
                 </div>
             </div>

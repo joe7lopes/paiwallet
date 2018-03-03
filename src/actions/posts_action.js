@@ -2,9 +2,7 @@ import database from '../firebase/firebase';
 
 import { 
     FETCH_POSTS,
-    SET_CURRENT_PAGE,
     ADD_POST
-    
 } from './types';
 
 const NODE = "posts";
@@ -25,8 +23,7 @@ export const addPost = (post = {}) => {
 
 export const startFetchPosts = () => {
     return (dispatch) => {
-        database.ref(NODE).once('value')
-            .then((snapshot) => {
+        database.ref(NODE).on('value', (snapshot) => {
                 let posts = [];
                 snapshot.forEach(childSnapshot => {
                     posts.push({
@@ -39,15 +36,6 @@ export const startFetchPosts = () => {
     };
 
 }
-
-export function setCurrentPage(pageNumber){
-
-    return {
-        type: SET_CURRENT_PAGE,
-        payload: pageNumber
-    }
-}
-
 
 export const startAddPost = (postData = {}) => {
     return (dispatch) => {

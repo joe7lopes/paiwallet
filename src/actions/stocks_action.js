@@ -30,7 +30,7 @@ export const addStockAdvise = (stockAdvise) => {
 
  export const startFetchStocks = () => {
     return (dispatch) => {
-        return database.ref(DATA_REF).once('value').then((snapshot) => {
+        return database.ref(DATA_REF).on('value', (snapshot) => {
             const stocksAdvise = [];
             snapshot.forEach((childSnapshot) => {
                 stocksAdvise.push({
