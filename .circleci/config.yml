@@ -22,14 +22,11 @@ jobs:
     working_directory: ~/pai-wallet
     steps:
       - run:
-          name: Current path
-          command: pwd
-      - run:
-          name: LISTING
-          command: ls -l
+          name: Build webpack
+          command: npm run build
       - run:
           name: Deploy to Firebase
-          command: ~/pai-wallet/node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+          command: npm run deploy
 workflows:
   version: 2
   test_and_deploy:

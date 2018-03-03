@@ -10,7 +10,7 @@
     "test-update": "jest --updateSnapshot",
     "test-dev": "jest --watch",
     "start": "node server/server.js",
-    "postbuild": "npm run build"
+    "deploy": "./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN"
   },
   "keywords": [],
   "author": "",
