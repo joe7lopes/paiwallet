@@ -1,8 +1,9 @@
 .DS_STORE
 node_modules
-./src/public/bundle.js
-bundle.js
+public/dist
 public/fonts
 package-lock.json
 .idea
 .vscode
+.env.test
+.env.development
