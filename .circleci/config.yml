@@ -8,16 +8,16 @@ jobs:
       - checkout
       # - run:
       #     name: Update npm
-      #     command: 'sudo npm install -g npm@5.5.1'
-      # - restore_cache:
-      #     key: dependecy-cache-{{ checksum "package.json" }}
+          # command: 'sudo npm install -g npm@5.5.1'
+      - restore_cache:
+          key: dependecy-cache-{{ checksum "package.json" }}
       - run: 
           name: Install npm dependencies
           command: npm install
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
-            - node_modules
+            - ./node_modules
   test:
     docker:
       - image: circleci/node:7.10
@@ -28,15 +28,12 @@ jobs:
       - run: 
           name: Install npm dependencies 2
           command: npm install
-
       - run:
           name: Run tests
           command: npm run test
   deploy:
-    docker:
-      - image: circleci/node:7.10
-        environment:
-          NODE_ENV: production
+    environment:
+      NODE_ENV: production
     steps:
       - run:
           name: Build webpack
