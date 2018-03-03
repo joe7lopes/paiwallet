@@ -34,6 +34,8 @@ jobs:
   deploy:
     environment:
       NODE_ENV: production
+    docker:
+      - image: circleci/node:7.10
     steps:
       - run:
           name: Build webpack
