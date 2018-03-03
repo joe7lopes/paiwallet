@@ -1,16 +1,30 @@
 version: 2
 jobs:
+  build:
+    working_directory: ~/pai-wallet
+    docker:
+      - image: circleci/node:7.10
+    steps:
+      - checkout
+      - run:
+          name: Update npm
+          command: 'sudo npm install -g npm@latest'
+      - restore_cache:
+          key: dependecy-cache-{{ checksum "package.json" }}
+      - run: 
+          name: Install npm dependencies
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
   test:
     docker:
       - image: circleci/node:7.10
         environment:
           NODE_ENV: test
-    working_directory: ~/pai-wallet
     steps:
       - checkout  
-      - run:
-          name: Install npm dependencies
-          command: npm install
       - run:
           name: Run tests
           command: npm run test
@@ -19,7 +33,6 @@ jobs:
       - image: circleci/node:7.10
         environment:
           NODE_ENV: production
-    working_directory: ~/pai-wallet
     steps:
       - run:
           name: Build webpack
@@ -29,11 +42,15 @@ jobs:
           command: npm run deploy
 workflows:
   version: 2
-  test_and_deploy:
+  build_and_test_and_deploy:
     jobs:
-      - test
+      - build
+      - test:
+          requires:
+            - build
       - deploy:
           requires:
+            - build
             - test
           filters:
             branches:
