@@ -5,14 +5,11 @@ jobs:
     environment:
       NODE_ENV: production
     docker:
-      - image: circleci/node:8.2.1
+      - image: circleci/node:9.3.0
     steps:
       - checkout
       - run:
-          name: Install npm version
-          command: sudo npm install -g npm@5.5.1
-      - run:
-          name: Print npm version
+          name: Print NODE and NPM version
           command: |
             pwd
             node --version
