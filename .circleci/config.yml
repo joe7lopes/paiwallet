@@ -12,7 +12,10 @@ jobs:
       - run:
           name: BUILD APP
           command: npm run build
-      - persist_to_workspace
+      - persist_to_workspace:
+          root: ~/pai-wallet
+          paths:
+           - .
   deploy:
     working_directory: ~/pai-wallet
     environment:
