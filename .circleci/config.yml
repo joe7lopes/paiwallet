@@ -23,6 +23,8 @@ jobs:
     docker:
       - image: circleci/node:9.3.0
     steps:
+      - attach_workspace:
+        at: ./
       - checkout
       - run:
           name: Checking node modules
