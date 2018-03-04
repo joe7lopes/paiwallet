@@ -19,7 +19,7 @@ jobs:
           command: npm install
       - run:
           name: Install Webpack globally
-          command: npm install -g webpack@3.8.1
+          command: sudo npm install -g webpack@3.8.1
       - run:
           name: Build Webpack
           command: npm run build
