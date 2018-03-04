@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CreatePost from './CreatePost';
+import CreatePost from './CreatePost'
 import CreateStock from './CreateStock';
 import UserList from './UserList';
 
