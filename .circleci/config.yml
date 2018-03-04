@@ -8,18 +8,18 @@ jobs:
       - image: circleci/node:9.3.0
     steps:
       - checkout
-      - run:
-          name: Print NODE and NPM version
-          command: |
-            pwd
-            node --version
-            npm --version
       - run: 
           name: Install NPM DEPENDENCIES
           command: npm install
       - run:
-          name: Install Webpack globally
-          command: sudo npm install -g webpack@3.8.1
+          name: Checking node modules
+          command: |
+            pwd
+            ls -l
+            less package.json
+            cd ./node_modules
+            ls -l
+            cd ..
       - run:
           name: Build Webpack
           command: npm run build
