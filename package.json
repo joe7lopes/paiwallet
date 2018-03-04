@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot",
-    "build": "./node_modules/.bin/webpack -p --env production",
+    "build": "webpack -p --env production",
     "test": "jest",
     "test-update": "jest --updateSnapshot",
     "test-dev": "cross-env NODE_ENV=test jest --config=jest.config.json",
-    "start": "node server/server.js",
-    "deploy": "./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN"
+    "start": "node server/server.js"
   },
   "keywords": [],
   "author": "",
