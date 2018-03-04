@@ -10,16 +10,9 @@ jobs:
           name: INSTALL NPM DEPENDENCIES
           command: npm install
       - run:
-          name: Checking node modules
-          command: |
-            pwd
-            ls -l
-            cd node_modules/
-            ls -l
-            cd ..
-      - run:
           name: BUILD APP
           command: npm run build
+      - persist_to_workspace
   deploy:
     working_directory: ~/pai-wallet
     environment:
