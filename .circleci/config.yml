@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           name: Install npm version
-          command: npm install -g npm@5.5.1
+          command: sudo npm install -g npm@5.5.1
       - run:
           name: Print npm version
           command: |
