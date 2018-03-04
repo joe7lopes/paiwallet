@@ -16,8 +16,7 @@ jobs:
           command: |
             pwd
             ls -l
-            less package.json
-            cd ./node_modules
+            cd node_modules/
             ls -l
             cd ..
       - run:
