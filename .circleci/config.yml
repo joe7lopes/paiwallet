@@ -12,7 +12,7 @@ jobs:
       - run:
           name: SETUP ENV VARIABLES
           command: process.env.NODE_ENV=production
-      -run:
+      - run:
           name: PRINT env variables
           command: echo $NODE_ENV
       - run:
