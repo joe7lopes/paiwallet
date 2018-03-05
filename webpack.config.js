@@ -5,6 +5,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 if(process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development'){
   require('dotenv').config({ path: '.env.test'});
+}else{
+  console.log("in webpack: ",process.env.NODE_ENV );
 }
 
 module.exports = (env, argv) => {

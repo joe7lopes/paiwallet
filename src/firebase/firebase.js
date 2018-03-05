@@ -1,5 +1,7 @@
 import * as firebase from 'firebase';
 
+console.log("inside app:", FIREBASE_DATABASE_URL);
+
 const config = {
     apiKey: FIREBASE_API_KEY,
     authDomain: FIREBASE_AUTH_DOMAIN,
