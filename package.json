@@ -4,11 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=test webpack-dev-server --inline --hot",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
     "build": "webpack -p --env production",
     "test": "jest",
-    "test-update": "jest --updateSnapshot",
-    "test-dev": "cross-env NODE_ENV=test jest --config=jest.config.json",
+    "test-dev": "cross-env NODE_ENV=test-dev jest --config=jest.config.json",
     "start": "node server/server.js"
   },
   "keywords": [],
