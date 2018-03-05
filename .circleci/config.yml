@@ -10,14 +10,8 @@ jobs:
           name: INSTALL NPM DEPENDENCIES
           command: npm install
       - run:
-          name: SETUP ENV VARIABLES
-          command: process.env.NODE_ENV=production
-      - run:
           name: PRINT env variables
           command: echo $NODE_ENV
-      - run:
-          name: BUILD APP
-          command: npm run build
       - persist_to_workspace:
           root: ~/pai-wallet
           paths:
@@ -32,6 +26,9 @@ jobs:
       - attach_workspace:
           at: ./
       - checkout
+      - run:
+          name: BUILD APP
+          command: npm run build
       - run:
           name: Deploy to Firebase
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
