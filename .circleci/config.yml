@@ -17,12 +17,10 @@ jobs:
     working_directory: ~/pai-wallet
     environment:
       NODE_ENV: production
+      foo: bar
+      baz: 123
     docker:
       - image: circleci/node:9.3.0
-    machine:
-      environment:
-        foo: bar
-        baz: 123
     steps:
       - attach_workspace:
           at: ./
